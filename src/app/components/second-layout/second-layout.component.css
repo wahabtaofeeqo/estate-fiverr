@@ -1,0 +1,66 @@
+.frame {
+	border: none; 
+	width: 100%; 
+	height: 500px;
+}
+
+.frame-float {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.frame-float i {
+	font-size: 45px;
+}
+
+.header-flag {
+	position: absolute;
+	left: -2px;
+}
+
+.c {
+	column-count: 2;
+	-moz-column-width: 100%;
+    -webkit-column-width: 100%;
+    width: 100%;
+    -moz-column-gap: 1em;
+    -webkit-column-gap:1em; 
+}
+
+.c > div {
+	display: inline-block;
+    padding:  .5rem;
+    width:  100%; 
+}
+
+.content {
+	margin-right: 4rem;
+}
+
+.flag {
+	padding: 10px;
+	margin-right: 4rem;
+	color: white;
+}
+
+.links p {
+	display: flex;
+}
+
+.links p .btn {
+	flex-grow: 1;
+}
+
+
+.faq {
+ 	display: flex;
+ 	justify-content: flex-end;
+ 	flex-direction: row;
+ 	text-align: right;
+}
+
+.faq .counter {
+	font-size: 40px; 
+	font-weight: bold;
+}

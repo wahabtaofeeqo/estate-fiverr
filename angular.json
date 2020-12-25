@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "estate"
+    }
+  },
+  "defaultProject": "estate",
+  "cli": {
+    "analytics": "2e3cae42-3c82-46b6-92d7-b458f5518bbc"
+  }
 }

@@ -1,0 +1,147 @@
+<div class="container-fluid" [style.background-color]="colorsObj.header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 col-lg-9 py-3">
+				<div class="card bg-transparent">
+					<div class="card-body p-0">
+						<iframe [src]="frameUrl" allowsfullscreen style="border: none; width: 100%; height: 500px;"></iframe>
+
+						<p class="frame-float">
+							<i class="fas fa-map-marker-alt text-info"></i>
+						</p>
+						<div class="nav py-1 d-none d-lg-flex">
+							<button class="nav-link btn"><i class="fas fa-fire text-white"></i></button>
+							<button class="nav-link btn" [title]="propertyData.phone">
+								<i class="far fa-comment-alt text-white"></i></button>
+							<button class="nav-link btn" [title]="propertyData.phone"><i class="fa fa-phone text-white"></i></button>
+							<a [href]="propertyData.whatsapp" class="nav-link btn"><i class="fab fa-whatsapp text-white"></i></a>
+
+							<button class="nav-link btn rounded-0 text-white btn-call" [style.background-color]="colorsObj.btnColor" (click)="showPhoneNumber()">
+								<i class="fa fa-phone"></i> &nbsp; {{btnText}}
+							</button>
+						</div>
+
+						<div class="container px-0 d-lg-none mobile">
+							<div class="row">
+								<div class="col-6 px-2">
+									<button class="btn ml-2 btn-block text-white" (click)="showPhoneNumber()" [style.background-color]="colorsObj.btnColor">
+										<i class="fa fa-phone"></i> &nbsp; {{btnText}}
+									</button>
+
+									<nav>
+										<p class="">
+											<button class="nav-link btn"><i class="fas fa-fire text-white"></i></button>
+											<button class="nav-link btn" [title]="propertyData.phone">
+												<i class="far fa-comment-alt text-white"></i></button>
+										</p>
+										<p>
+											<button class="nav-link btn" [title]="propertyData.phone"><i class="fa fa-phone text-white"></i></button>
+											<a [href]="propertyData.whatsapp" class="nav-link btn"><i class="fab fa-whatsapp text-white"></i></a>
+										</p>
+									</nav>
+								</div>
+
+								<div class="col-6">
+									<div class="flag-one" [style.background-color]="colorsObj.headerFlag">
+										<p class="text-center" [style.color]="colorsObj.headerTitle">
+											{{propertyData.d}}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 col-lg-3 left d-none d-lg-flex" [style.background-color]="colorsObj.headerFlag">
+				<p class="text-center" [style.color]="colorsObj.headerTitle">
+					{{propertyData.d}}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
+	<div class="row">
+		<div class="col-md-12 col-lg-9 py-5 mb-4 order-2 order-lg-1">
+			<div class="">
+				<p class="text-center col-6 m-auto">
+					{{propertyData.e}}
+				</p>
+			</div>
+		</div>
+
+		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
+			<p class="col-md-6 m-auto text-center py-md-3 flag" [style.background-color]="colorsObj.flagTwo">
+				תיאור הדירה
+			</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
+	<div class="row">
+		<div class="col-md-12 col-lg-9 py-5 mb-4  order-2 order-lg-1">
+			<div class="text-center">
+				<div *ngFor="let item of groupTwo | keyvalue">
+					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
+			<p class="col-md-6 m-auto text-center text-white flag" [style.background-color]="colorsObj.flagThree">
+				פרטי הדירה
+			</p>
+		</div>
+	</div>
+</div>
+
+
+<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
+	<div class="row">
+		<div class="col-sm-12 col-lg-9 col-md-9 py-5 mb-4 order-2 order-lg-1">
+			<div class="text-center">
+				<div *ngFor="let item of groupThree | keyvalue">
+					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
+			<p class="col-md-6 m-auto text-center text-white flag" [style.background-color]="colorsObj.flagFour">
+				פרטים נוספים
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="container px-0">
+	<iframe [src]="mapURL" allowsfullscreen style="border: none; width: 100%; height: 300px"></iframe>
+</div>
+
+
+<div class="container pt-4 pb-5 rounded" [style.background-color]="colorsObj.headerFlag">
+	<div class="my-4">
+		<p class="text-center faq-flag mx-auto text-white" [style.background-color]="colorsObj.QAFlag">
+			שאלות ותשובות
+		</p>
+	</div>
+
+	<ng-container *ngFor="let faq of propertyFAQ; let i = index;">
+		<div class="mb-4 col-md-12 col-lg-8 mx-auto faq">
+			<div class="order-2 order-lg-1">
+				<h6 class="font-weight-bold">
+					{{faq.q}} 
+				</h6>
+				<p class="">{{faq.q}}</p>
+			</div>
+
+			<p class="px-3 counter order-1 order-lg-2" [style.color]="colorsObj.numbers">{{i + 1}}</p>
+		</div>
+	</ng-container>
+</div>
