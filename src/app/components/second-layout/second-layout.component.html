@@ -1,20 +1,15 @@
-<div class="container-fluid" [style.background-color]="colorsObj.header">
-		<div class="container">
+<div class="container-fluid header py-5">
+	<div class="position-relative">
 		<div class="row">
-			<div class="col-md-12 col-lg-9 py-3 px-0">
-				<div class="card bg-transparent">
-					<div class="card-body p-0">
-						<iframe [src]="frameUrl" allowsfullscreen class="frame"></iframe>
-
-						<p class="frame-float">
-							<i class="fas fa-map-marker-alt text-info"></i>
-						</p>
-					</div>
+			<div class="col-md-9 order-2 order-md-1 px-md-5">
+				<div class="frame-holder">
+					<iframe [src]="frameUrl" class="frame" allowsfullscreen style="background: white;"></iframe>
+					<img src="/assets/float/lg.png" class="frame-float">
 				</div>
 			</div>
 
-			<div class="col-md-12 col-lg-3 px-0 position-relative d-flex align-items-center">
-				<p class="text-center header-flag p-3" [style.background-color]="colorsObj.headerFlag">
+			<div class="col-md-3 order-1 flag-holder order-md-2 pr-0 position-relative">
+				<p class="flag title bg-white">
 					{{propertyData.d}}
 				</p>
 			</div>
@@ -22,85 +17,106 @@
 	</div>
 </div>
 
-
-<div class="container c py-5 px-0">
-	<div [style.background-color]="colorsObj.headerFlag" class="mb-4 px-0 py-3 position-relative">
-		<p class="flag text-right color-white" [style.background-color]="colorsObj.header">1 hello world</p>
-
-		<div class="content">
-			<div class="text-right">
-				<div *ngFor="let item of groupThree | keyvalue">
-					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="masonry col-md-10 mx-auto">
+			<div class="box mb-4">
+				<p class="flag py-1 my-3 subtitle" [style.background-color]="colorsObj.header">{{btnText}}</p>
+				<div class="content text">
+					<ng-container *ngFor="let item of groupThree | keyvalue">
+						<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+					</ng-container>
 				</div>
 			</div>
-		</div>
-	</div>
 
-	<div [style.background-color]="colorsObj.headerFlag" class="mb-4 px-0 py-3 position-relative">
-		<p class="flag text-right color-white" [style.background-color]="colorsObj.header">1 hello world</p>
+			<div class="box last mb-4">
 
-		<nav class="links">
-			<p class="col-6 mx-auto">
-				<button class="nav-link btn"><i class="fas fa-fire"></i></button>
-				<button class="nav-link btn" [title]="propertyData.phone">
-					<i class="far fa-comment-alt"></i></button>
-			</p>
-			<p class="col-6 mx-auto">
-				<button class="nav-link btn" [title]="propertyData.phone"><i class="fa fa-phone"></i></button>
-				<a [href]="propertyData.whatsapp" class="nav-link btn"><i class="fab fa-whatsapp"></i></a>
-			</p>
-		</nav>
+				<p class="flag py-1 my-3 subtitle" [style.background-color]="colorsObj.header">{{btnText}}</p>
 
-		<div class="px-5">
-			<button class="nav-link btn rounded-0 text-white btn-block" [style.background-color]="colorsObj.flagTwo" (click)="showPhoneNumber()">
-				<i class="fa fa-phone"></i> &nbsp; {{btnText}}
-			</button>
-		</div>
-	</div>
+				<nav class="links d-flex flex-column">
+					<p class="col-6 mx-auto order-2 order-lg-1">
+						<a [href]="waze" (click)="notify()" class="nav-link btn" target="_blank">
+							<img src="/assets/waze/lg2.png"></a>
 
+						<button class="nav-link btn" [title]="propertyData.phone"  (click)="notify()">
+							<img src="/assets/sms/lg2.png">
+						</button>
+					</p>
+					<p class="col-6 mx-auto order-1 order-lg-2">
+						<button class="nav-link btn" [title]="propertyData.phone" title="Phone" (click)="notify()"> 
+							<img src="/assets/phone/lg2.png">
+						</button>
 
-	<div [style.background-color]="colorsObj.headerFlag" class="mb-4 px-0 py-3">
-		<p class="flag text-right color-white" [style.background-color]="colorsObj.header">1 hello world</p>
-		<div class="content">
-			<p class="text-right py-3">
-				{{propertyData.e}}
-			</p>
-		</div>
-	</div>
+						<a [href]="propertyData.whatsapp" class="nav-link btn" title="Whatsapp" (click)="notify()">
+							 <img src="/assets/whatsapp/lg2.png">
+						</a>
+					</p>
+				</nav>
 
+				<div class="px-5">
+					<button class="nav-link btn rounded-0 text-white btn-block" [style.background-color]="colorsObj.flagTwo" (click)="showPhoneNumber()">
+						<img src="/assets/phone/sm.png" style="width: 20px;"> &nbsp; {{btnText}}
+					</button>
+				</div>
+			</div>
 
-	<div [style.background-color]="colorsObj.headerFlag" class="mb-4 px-0 py-3">
-		<p class="flag text-right color-white" [style.background-color]="colorsObj.header">1 hello world</p>
+			<div class="box mb-4">
+				<p class="flag py-1 my-3 subtitle" [style.background-color]="colorsObj.header">{{btnText}}</p>
+				<div class="content text">
+					{{propertyData.e}}
+				</div>
+			</div>
 
-		<div class="content">
-			<div class="text-right">
-				<div *ngFor="let item of groupTwo | keyvalue">
-					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+			<div class="box mb-4">
+				<p class="flag py-1 my-3 subtitle" [style.background-color]="colorsObj.header">{{btnText}}</p>
+				<div class="content text">
+					<ng-container *ngFor="let item of groupTwo | keyvalue">
+						<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+					</ng-container>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="container px-0">
-	<iframe [src]="mapURL" allowsfullscreen style="border: none; width: 100%; height: 300px"></iframe>
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="col-md-10 mx-auto">
+			<iframe [src]="mapURL" allowsfullscreen style="border: none; width: 100%; height: 300px"></iframe>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="container rounded my-4 px-3">
+		<div class="col-md-10 mx-auto box px-0 faq-holder"  [style.background-color]="colorsObj.headerFlag">
+			<p class="flag py-1 subtitle mt-3 mb-5" [style.background-color]="colorsObj.header">{{btnText}}</p>
+
+			<div class="col-md-10 mx-auto">
+				<ng-container *ngFor="let faq of propertyFAQ; let i = index;">
+					<div class="faq py-3">
+						<div class="order-2 order-md-1">
+							<h6 class="font-weight-bold text">
+								{{faq.q}} 
+							</h6>
+							<p class="text">{{faq.a}}</p>
+						</div>
+
+						<p class="px-3 counter order-1 order-md-2" [style.color]="colorsObj.numbers">{{i + 1}}</p>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+	</div>
 </div>
 
 
-<!-- FAQ -->
-<div class="container pt-4 pb-5 px-0" [style.background-color]="colorsObj.headerFlag">
-	<p class="flag text-right color-white col-6 mb-5" [style.background-color]="colorsObj.header">1 hello world</p>
-
-	<ng-container *ngFor="let faq of propertyFAQ; let i = index;">
-		<div class="mb-4 col-md-12 col-lg-8 mx-auto faq">
-			<div class="order-2 order-lg-1">
-				<h6 class="font-weight-bold">
-					{{faq.q}} 
-				</h6>
-				<p class="">{{faq.q}}</p>
-			</div>
-
-			<p class="px-3 counter order-1 order-lg-2" [style.color]="colorsObj.numbers">{{i + 1}}</p>
-		</div>
-	</ng-container>
+<div class="container-fluid py-3 d-none d-md-block" [style.background-color]="colorsObj.headerFlag">
+	<p class="mb-0">
+		<b>>>> לות ותשובות<</b>
+		&nbsp; &nbsp;
+		<span>
+			Lorem ipsum dolor sit amet,
+		</span>
+	</p>
 </div>

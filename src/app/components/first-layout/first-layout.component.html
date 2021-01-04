@@ -1,147 +1,185 @@
-<div class="container-fluid" [style.background-color]="colorsObj.header">
+<div class="container-fluid header">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12 col-lg-9 py-3">
-				<div class="card bg-transparent">
-					<div class="card-body p-0">
-						<iframe [src]="frameUrl" allowsfullscreen style="border: none; width: 100%; height: 500px;"></iframe>
+			<div class="col-md-9">
+				<div class="frame-holder">
+					<iframe [src]="frameUrl" class="frame" allowsfullscreen></iframe>
+					<img src="/assets/float/lg.png" class="frame-float">
+				</div>
 
-						<p class="frame-float">
-							<i class="fas fa-map-marker-alt text-info"></i>
-						</p>
-						<div class="nav py-1 d-none d-lg-flex">
-							<button class="nav-link btn"><i class="fas fa-fire text-white"></i></button>
-							<button class="nav-link btn" [title]="propertyData.phone">
-								<i class="far fa-comment-alt text-white"></i></button>
-							<button class="nav-link btn" [title]="propertyData.phone"><i class="fa fa-phone text-white"></i></button>
-							<a [href]="propertyData.whatsapp" class="nav-link btn"><i class="fab fa-whatsapp text-white"></i></a>
+				<div class="d-none d-md-flex links-md px-0 py-2" style="flex-direction: row;">
+					<a [href]="waze" (click)="notify()" class="btn mr-4" target="_blank">
+						<img src="/assets/waze/lg.png"></a>
 
-							<button class="nav-link btn rounded-0 text-white btn-call" [style.background-color]="colorsObj.btnColor" (click)="showPhoneNumber()">
-								<i class="fa fa-phone"></i> &nbsp; {{btnText}}
-							</button>
-						</div>
+					<button (click)="notify()" class="btn mr-4" [title]="propertyData.phone">
+						<img src="/assets/sms/lg.png"></button>
 
-						<div class="container px-0 d-lg-none mobile">
-							<div class="row">
-								<div class="col-6 px-2">
-									<button class="btn ml-2 btn-block text-white" (click)="showPhoneNumber()" [style.background-color]="colorsObj.btnColor">
-										<i class="fa fa-phone"></i> &nbsp; {{btnText}}
-									</button>
+					<button (click)="notify()" class="btn mr-4" [title]="propertyData.phone">
+						<img src="/assets/phone/lg.png"></button>
 
-									<nav>
-										<p class="">
-											<button class="nav-link btn"><i class="fas fa-fire text-white"></i></button>
-											<button class="nav-link btn" [title]="propertyData.phone">
-												<i class="far fa-comment-alt text-white"></i></button>
-										</p>
-										<p>
-											<button class="nav-link btn" [title]="propertyData.phone"><i class="fa fa-phone text-white"></i></button>
-											<a [href]="propertyData.whatsapp" class="nav-link btn"><i class="fab fa-whatsapp text-white"></i></a>
-										</p>
-									</nav>
-								</div>
+					<a [href]="propertyData.whatsapp" (click)="notify()" class="btn mr-4">
+						<img src="/assets/whatsapp/lg.png"></a>
 
-								<div class="col-6">
-									<div class="flag-one" [style.background-color]="colorsObj.headerFlag">
-										<p class="text-center" [style.color]="colorsObj.headerTitle">
-											{{propertyData.d}}
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<button class="btn rounded-0 text-white call" [style.background-color]="colorsObj.btnColor" (click)="showPhoneNumber()" style="margin-right: 0;">
+						<img src="/assets/phone/sm.png"> &nbsp; {{btnText}} </button>
 				</div>
 			</div>
-
-			<div class="col-md-12 col-lg-3 left d-none d-lg-flex" [style.background-color]="colorsObj.headerFlag">
-				<p class="text-center" [style.color]="colorsObj.headerTitle">
+			
+			<div class="col-md-3 d-none d-md-block">
+				<p class="top-flag" [style.background-color]="colorsObj.headerFlag">
 					{{propertyData.d}}
 				</p>
 			</div>
 		</div>
-	</div>
-</div>
 
+		<div class="row d-md-none">
+			<div class="col-5 pr-0 pt-3">
+				<button class="btn rounded-0 call" [style.background-color]="colorsObj.btnColor" (click)="showPhoneNumber()">
+					{{btnText}}
+				</button>
 
-<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
-	<div class="row">
-		<div class="col-md-12 col-lg-9 py-5 mb-4 order-2 order-lg-1">
-			<div class="">
-				<p class="text-center col-6 m-auto">
-					{{propertyData.e}}
+				<div class="links">
+					<p>
+						<a [href]="propertyData.whatsapp" (click)="notify()" class="btn">
+							<img src="/assets/whatsapp/lg.png"></a>
+
+						<button class="btn" (click)="notify()" [title]="propertyData.phone">
+							<img src="/assets/phone/lg.png"></button>
+					</p>
+
+					<p>
+						<a [href]="waze" (click)="notify()" class="btn" target="_blank">
+							<img src="/assets/waze/lg.png"></a>
+
+						<button (click)="notify()" class="btn" [title]="propertyData.phone">
+							<img src="/assets/sms/lg.png"></button>
+					</p>
+				</div>
+			</div>
+			<div class="col-7 text-center">
+				<p class="flag top" [style.background-color]="colorsObj.headerFlag">
+					<span>{{propertyData.d}}</span>
 				</p>
 			</div>
 		</div>
-
-		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
-			<p class="col-md-6 m-auto text-center py-md-3 flag" [style.background-color]="colorsObj.flagTwo">
-				תיאור הדירה
-			</p>
-		</div>
 	</div>
 </div>
 
 
-<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
-	<div class="row">
-		<div class="col-md-12 col-lg-9 py-5 mb-4  order-2 order-lg-1">
-			<div class="text-center">
-				<div *ngFor="let item of groupTwo | keyvalue">
-					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="col-md-10 mx-auto box">
+			<div class="row">
+				<div class="col-md-9 order-2 order-md-1 content d-flex align-items-center">
+					<div class="row align-items-center justify-content-end" style="flex-grow: 1">
+						<p class="text col-md-7 py-3 mx-auto" style="font-style: normal; font-weight: normal;">
+							{{propertyData.e}}
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-3 order-1 order-md-2 text-center">
+					<p class="flag" [style.background-color]="colorsObj.flagTwo">
+						תיאור הדירה
+					</p>
 				</div>
 			</div>
 		</div>
-
-		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
-			<p class="col-md-6 m-auto text-center text-white flag" [style.background-color]="colorsObj.flagThree">
-				פרטי הדירה
-			</p>
-		</div>
 	</div>
 </div>
 
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="col-md-10 mx-auto box">
+			<div class="row">
+				<div class="col-md-9 order-2 order-md-1 content d-flex align-items-center">
+					<div class="row py-3 d-flex align-items-center justify-content-end" style="flex-grow: 1">
+						<ng-container  *ngFor="let item of groupTwo; let i = index">
+							<p class="col-md-6 text-right group-text">
+								<b>{{item.prop}} </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+								<span>{{item.value}} </span>
+							</p>
+						</ng-container>
+					</div>
+				</div>
 
-<div class="container my-4 rounded" [style.background-color]="colorsObj.headerFlag">
-	<div class="row">
-		<div class="col-sm-12 col-lg-9 col-md-9 py-5 mb-4 order-2 order-lg-1">
-			<div class="text-center">
-				<div *ngFor="let item of groupThree | keyvalue">
-					<p>{{item.value}}  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>{{item.key}} </b></p>
+				<div class="col-md-3 order-1 order-md-2 text-center">
+					<p class="flag" [style.background-color]="colorsObj.flagThree">
+						תיאור הדירה
+					</p>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<div class="col-md-12 col-lg-3 order-1 order-lg-2">
-			<p class="col-md-6 m-auto text-center text-white flag" [style.background-color]="colorsObj.flagFour">
-				פרטים נוספים
-			</p>
+
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="col-md-10 mx-auto box">
+			<div class="row">
+				<div class="col-md-9 order-2 order-md-1 content d-flex align-items-center">
+					<div class="row py-3 d-flex align-items-center justify-content-end" style="flex-grow: 1">
+						<ng-container  *ngFor="let item of groupThree; let i = index">
+							<p class="col-md-6 text-right group-text">
+								<b>{{item.prop}} </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+								<span>{{item.value}} </span>
+							</p>
+						</ng-container>
+					</div>
+				</div>
+
+				<div class="col-md-3 order-1 order-md-2 text-center">
+					<p class="flag" [style.background-color]="colorsObj.flagFour">
+						תיאור הדירה
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="container px-0">
-	<iframe [src]="mapURL" allowsfullscreen style="border: none; width: 100%; height: 300px"></iframe>
+<div class="container-fluid">
+	<div class="container my-4">
+		<div class="col-md-10 mx-auto px-0">
+			<iframe [src]="mapURL" allowsfullscreen style="border: none; width: 100%; height: 300px"></iframe>
+		</div>
+	</div>
 </div>
 
-
-<div class="container pt-4 pb-5 rounded" [style.background-color]="colorsObj.headerFlag">
-	<div class="my-4">
-		<p class="text-center faq-flag mx-auto text-white" [style.background-color]="colorsObj.QAFlag">
-			שאלות ותשובות
-		</p>
-	</div>
-
-	<ng-container *ngFor="let faq of propertyFAQ; let i = index;">
-		<div class="mb-4 col-md-12 col-lg-8 mx-auto faq">
-			<div class="order-2 order-lg-1">
-				<h6 class="font-weight-bold">
-					{{faq.q}} 
-				</h6>
-				<p class="">{{faq.q}}</p>
+<div class="container-fluid">
+	<div class="container rounded my-4">
+		<div class="col-md-8 mx-auto faq-holder"  [style.background-color]="colorsObj.headerFlag">
+			<div class="text-center">
+				<p class="faq-flag" [style.background-color]="colorsObj.QAFlag">
+					<span class="d-block">		אלות ותשובות</span>
+				</p>
 			</div>
 
-			<p class="px-3 counter order-1 order-lg-2" [style.color]="colorsObj.numbers">{{i + 1}}</p>
+			<div class="col-md-10 mx-auto mt-5">
+				<ng-container *ngFor="let faq of propertyFAQ; let i = index;">
+					<div class="faq mb-5">
+						<div class="order-2 order-md-1">
+							<h6 class="font-weight-bold text">
+								{{faq.q}} 
+							</h6>
+							<p class="text">{{faq.a}}</p>
+						</div>
+
+						<p class="px-3 counter order-1 order-md-2" style="" [style.color]="colorsObj.numbers">{{i + 1}}</p>
+					</div>
+				</ng-container>
+			</div>
 		</div>
-	</ng-container>
+	</div>
+</div>
+
+<div class="container-fluid py-3 " [style.background-color]="colorsObj.headerFlag">
+	<p class="mb-0">
+		<b>>>> לות ותשובות<</b>
+		&nbsp; &nbsp;
+		<span>
+			Lorem ipsum dolor sit amet,
+		</span>
+	</p>
 </div>

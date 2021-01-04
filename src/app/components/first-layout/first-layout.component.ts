@@ -2,7 +2,7 @@ import { Component, OnInit, Input, SecurityContext } from '@angular/core';
 import { GoogleSheetService } from '../../services';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-first-layout',
@@ -37,6 +37,8 @@ export class FirstLayoutComponent implements OnInit {
 		e: ''
 	};
 
+	waze = "https://www.waze.com/ul?q=";
+
 	groupTwo = [];
 	groupThree = [];
 
@@ -50,7 +52,9 @@ export class FirstLayoutComponent implements OnInit {
   	constructor(private service: GoogleSheetService, 
   		private http: HttpClient, 
   		private sanitizer: DomSanitizer,
-  		private activated: ActivatedRoute) { }
+  		private activated: ActivatedRoute,
+  		private router: Router) {
+  	}
 
   	ngOnInit(): void {
   		this.metaDataObj = this.service.getMetaData();
@@ -73,8 +77,6 @@ export class FirstLayoutComponent implements OnInit {
 
 	  	this.frameUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.frameUrl);
 	  	
-	  	 console.log(this.metaDataObj);
-
 	  	this.loadProperties();
 	  	this.loadColors(this.metaDataObj.basic_params.color_plate_id);
 	  	this.loadFAQ();
@@ -137,13 +139,37 @@ export class FirstLayoutComponent implements OnInit {
 			  		+ properties.additional_params['מס בית'] + ' ' + properties.additional_params['עיר']) 
 			  		+ "&t=&z=17&ie=UTF8&iwloc=&output=embed&hl=iw");
 
+				this.waze = this.waze + data[0].basic_params.waze;
 		      	this.propertyData.d = data[0].basic_params.כותרת 
 		      	this.propertyData.phone = data[0].basic_params.טלפון
 		      	this.propertyData.e = data[0].basic_params.תיאור
 		      	this.propertyData.whatsapp = "https://wa.me/972" + this.propertyData.phone + "?text=" + encodeURI(this.propertyData.d)
 		      	
-		      	this.groupTwo = data[0].additional_params;
-		      	this.groupThree = data[0].additional_features;
+		      	// this.groupTwo = data[0].additional_params;
+		      	// this.groupThree = data[0].additional_features;
+		      	
+		      	let two = [];
+		      	let three = [];
+
+		      	for(const prop in data[0].additional_features) {
+		      		let temp = {
+		      			prop: prop,
+		      			value: data[0].additional_features[prop]
+		      		};
+
+		      		three.push(temp);
+		      	}
+		      	this.groupThree = three;
+
+		      	for(const prop in data[0].additional_params) {
+		      		let temp = {
+		      			prop: prop,
+		      			value: data[0].additional_params[prop]
+		      		};
+
+		      		two.push(temp);
+		      	}
+		      	this.groupTwo = two;
 		    });
   		}
   	}
@@ -214,5 +240,13 @@ export class FirstLayoutComponent implements OnInit {
 
   	showPhoneNumber() {
   		this.btnText = this.propertyData.phone;
+  		this.notify();
   	}
+
+  	notify() {
+  		this.service.notityGoogleAnalytics(this.metaDataObj['Google_Analytics'], 'Button clicks');
+  		this.service.notityFacebookPixel(this.metaDataObj['Pixel_accounts'], 'Button clicks');
+  	}
+
+
 }

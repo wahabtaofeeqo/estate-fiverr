@@ -31,10 +31,6 @@ export class AppComponent implements OnInit {
 			if (this.parameter != null || this.parameter != undefined) {
 				this.loadMetaData(this.parameter);
 			}
-			else {
-				console.log("Parameter is missing");
-				//alert("missing parameter")
-			}
 		})
 	}
 
@@ -51,7 +47,7 @@ export class AppComponent implements OnInit {
 	      		this.metaDataObj = data[0];
 	      		this.service.setMetaData(this.metaDataObj);
 
-	      		if (this.metaDataObj.basic_params.layout_id == 0) {
+	      		if (this.metaDataObj.basic_params.layout_id == 1) {
 		  			this.router.navigate(['/one'], {queryParams: {m: this.parameter}});
 		  		}
 		  		else {
